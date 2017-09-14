@@ -1,5 +1,6 @@
 package com.mobeta.android.dslv;
 
+import android.graphics.Canvas;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.Color;
@@ -47,12 +48,12 @@ public class SimpleFloatViewManager implements DragSortListView.FloatViewManager
 
         v.setPressed(false);
 
-        // Create a copy of the drawing cache so that it does not get
-        // recycled by the framework when the list tries to clean up memory
-        //v.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
-        v.setDrawingCacheEnabled(true);
-        mFloatBitmap = Bitmap.createBitmap(v.getDrawingCache());
-        v.setDrawingCacheEnabled(false);
+		/* Instead of using the cache like the original, create our own internal one.  Not ideal, but this allows
+		 * the library to be used inside very restrictive android environments that don't allow access to the cache */
+        mFloatBitmap = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas c = new Canvas(mFloatBitmap);
+        v.draw(c);
+
 
         if (mImageView == null) {
             mImageView = new ImageView(mListView.getContext());

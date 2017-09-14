@@ -26,6 +26,7 @@ Copyright 2012 Andreas Schildbach
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <android.version>2.1_r1</android.version>
         <android.support-v4.version>r7</android.support-v4.version>
+
     </properties>
 
     <modules>
@@ -70,8 +71,16 @@ Copyright 2012 Andreas Schildbach
 			    <plugin>
 			    	<groupId>com.jayway.maven.plugins.android.generation2</groupId>
 			    	<artifactId>android-maven-plugin</artifactId>
-			    	<version>3.3.2</version>
+			    	<version>4.0.0-rc.2</version>
 			    	<extensions>true</extensions>
+					<configuration>
+          				<sdk>
+				            <platform>19</platform>
+			          	</sdk>
+			   			<androidManifestFile>${project.basedir}/AndroidManifest.xml</androidManifestFile>
+						<resourceDirectory>${project.basedir}/res</resourceDirectory>
+						<nativeLibrariesDirectory>${project.basedir}/libs</nativeLibrariesDirectory>
+			        </configuration>
 			    </plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>

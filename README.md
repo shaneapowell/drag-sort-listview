@@ -1,6 +1,12 @@
 DragSortListView
 ================
 
+# Forked: For use in restrictive android environments.
+The reason for this fork is only to remove the use of the drawing cache.  
+This api feature is not permitted in some very restrictive android devices.  
+If you find yourself using the original library and your app is deployed to a 
+very restrictive MDM, this fork might help if the MDM is preventing your app from running.
+
 # NOTICE: No longer maintained.
 
 I do not have much time to devote to this project so I am
